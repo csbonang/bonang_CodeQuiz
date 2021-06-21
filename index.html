@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- page content adjusts to screen -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+         crossorigin="anonymous">
+         <link rel="stylesheet" href="style.css" />
+    </head> 
+    <body> 
+        <!-- Start Page -->
+        <div>
+            <h1 id="startHeader">
+                Coding Quiz Challenge
+            </h1> 
+            <h2 id= "startInstructions"> 
+                Test your coding abilities by answering these question. 
+                Click start to begin. 
+            </h2>
+            <!-- Start button -->
+            <button id = "start" type="button" class="btn btn-secondary">Start</button>
+        </div>  
+        <!-- Question Page begins after start button is pressed -->
+        
+        <div class= "questionBlock"> 
+            <!-- Display question -->
+            <p id="question"> </p>
+            <!-- Buttons that hold possible answers to question -->
+            <div class="btn-group-vertical">
+                <button id= "ans-1"type="button" class="btn btn-secondary">Ans_1</button>
+                <button id= "ans-2"type="button" class="btn btn-secondary">Ans_2</button>
+                <button id= "ans-3"type="button" class="btn btn-secondary">Ans_3</button>
+                <button id= "ans-4"type="button" class="btn btn-secondary">Ans_4</button>
+            </div>
+            <div id="answerBorder"></div>
+        </div>
+        <script src="script.js"> </script>
+    </body>
+</html> 

@@ -1,0 +1,60 @@
+
+
+
+ /* start:: start button initiates the code quiz. The styling below includes 
+ color changing and positioning*/
+#start
+{
+    /* changes color to purple */
+    background-color: #8064A2 !important;
+    /* centers the start text */
+    margin: 0;
+    position: relative;
+    top:3vw;
+    transform:translateX(47vw); 
+    
+    
+}
+/* styling for all the answer buttons */
+#ans-1, #ans-2, #ans-3, #ans-4
+{
+    /* hides the button before start button initiates */
+    display: none;
+    /* ensures that all corners are rounded */
+    border-radius: 0.5vw;
+    /* changes the button color to purple */
+    background-color: #8064A2;
+    /* places buttons in the center position */
+    position:relative; 
+    top: 3vw; 
+    transform:translateX(23vw); 
+    /* includes space between buttons  */
+    margin: 3px; 
+}
+/* shows a border  */
+#answerBorder 
+{
+    /* do not display till user provides an answer */
+    display: none;
+    /* border color, bold, and width */
+    border: 1px solid gray; 
+    border-radius: 2vw;
+    font-weight: bold;
+    width: 55vw;
+    /* position on page */
+    position: relative;
+    top: 3vw; 
+    transform:translateX(23vw); 
+    
+}
+/* The start page header and question styling  */
+h1, #question
+{
+    font-weight: bold;
+    text-align: center;
+}
+/*The start page subheader styling */
+h2 
+{
+     text-align: center;
+}
