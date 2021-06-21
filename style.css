@@ -58,3 +58,25 @@ h2
 {
      text-align: center;
 }
+#timer 
+{
+    /* do not display until user clicks start*/
+    display: none;
+    background-color: rgb(200, 248, 200);
+    border: 2px solid gray; 
+    border-radius: 2vw;
+    position:relative; 
+    /* timer floats to the right */
+    float:right; 
+    /* ensures that it touch side of page*/
+    transform:translateX(-3vw); 
+    /* bold font */
+    font-weight: bold;
+    /* increases font-size */
+    font-size: x-large;
+    /* increases width  */
+    width: 12vw;
+    /* center timer text in box  */
+    text-align: center;
+
+}

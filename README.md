@@ -13,3 +13,6 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_style_hr
 
 <b> Random Number Generator </b> <br>
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+<b> Timer </b> <br>
+09_TimerIntervals Notes (example activities from class)

@@ -1,8 +1,9 @@
 var questionAnswered = false;
 var stats = 
 {
-    score: 0, 
-    highest: 0, 
+    currentScore: 0, 
+    // TODO: MAKE THIS AN ARRAY or make a dictionary? 
+    highestScore: 0, 
     initial: ""
 }; 
 
@@ -15,6 +16,8 @@ var answer1 = document.getElementById('ans-1');
 var answer2 = document.getElementById('ans-2');
 var answer3 = document.getElementById('ans-3');
 var answer4 = document.getElementById('ans-4'); 
+// used to displays timer 
+var displayTimer = document.getElementById('timer'); 
 // displays a border 
 var displayBorder = document.getElementById('answerBorder'); 
 // tracks user's choice from question 
@@ -25,7 +28,10 @@ var count = -1;
 var questionSize = 2; 
 // CHECK if user has answered 
 var userAnsweredAlready = false; 
-
+// TODO: Number of questions answered 
+var numQuestionsAnswered = 0; 
+// set the timer 
+var userTimer = 20; 
 // once the start button is clicked, loop through the quiz questions 
 startQuiz.addEventListener('click', function(event)
 {
@@ -40,6 +46,8 @@ startQuiz.addEventListener('click', function(event)
     answer2.style.display = "block"; 
     answer3.style.display = "block"; 
     answer4.style.display = "block"; 
+    // TODO: call set time function 
+    setTime(); 
     // set the index of the question array to the random number generated and a number it cannot be 
     count = randomCount(questionSize, -1); 
     console.log("Count = ", count); 
@@ -90,9 +98,12 @@ function loopThruQuestions() {
   var q2_ansArray = ['for (i = 0; i <= 5)', 'for (i = 0; i <= 5; i++)', 'for i = 1 to 5', 'for (i <= 5; i++)']; 
   // update the html with the first question  
   console.log("loopThruQuestions count: ", count); 
-  // TODO add timer condition 
-  //while(count != -1){
-    if(count == 0){
+  
+ // TODO: the problem with this is that is the userTime is 20 but we completed the questions, 
+ // it will still continue 
+ // (userTimer > 0) ||
+  if( userTimer > 0 ){
+    if(count == 0 && numQuestionsAnswered != questionSize){
             console.log("In LOOP THRU, COUNT = 0"); 
             document.getElementById('question').innerHTML = qArray[count];
             // update the html with the potential answers 
@@ -102,13 +113,19 @@ function loopThruQuestions() {
             answer4.textContent = q1_ansArray[3];
             // display whether it is correct or incorrect 
         if(userAnsweredAlready){
+            // TODO: question was answered already, increment questions answered 
+            numQuestionsAnswered++; 
+            console.log("QUESTIONS ASKED: " , numQuestionsAnswered);
             switch(userAnswer)
             {
-                case 1: //console.log("incorrect"); 
+                case 1: console.log("incorrect"); 
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0); 
                     userAnsweredAlready = false; 
+                    //TODO: if incorrect, then decrement timer by 5. 
+                    userTimer = userTimer - 5; 
+                    console.log("Timer in case 1 has been decremented: ", userTimer); 
                     console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                     console.log("CALLING LOOP THU AGAIN"); 
                     loopThruQuestions(); 
@@ -118,6 +135,8 @@ function loopThruQuestions() {
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0); 
                     userAnsweredAlready = false; 
+                    userTimer = userTimer - 5; 
+                    console.log("Timer in case 2 has been decremented: ", userTimer); 
                     console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                     console.log("CALLING LOOP THU AGAIN"); 
                     loopThruQuestions(); 
@@ -127,6 +146,8 @@ function loopThruQuestions() {
                     displayBorder.textContent = "Correct!"; 
                     count = randomCount(questionSize, 0); 
                     userAnsweredAlready = false; 
+                    //TODO: if correct, leave timer as is  
+                    console.log("Timer in case 3 has not been changed", userTimer); 
                     console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                     console.log("CALLING LOOP THU AGAIN"); 
                     loopThruQuestions(); 
@@ -137,6 +158,9 @@ function loopThruQuestions() {
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0);
                     userAnsweredAlready = false; 
+                    //TODO: if correct, leave timer as is  
+                    userTimer = userTimer - 5; 
+                    console.log("Timer in case 4 has been decremented", userTimer); 
                     console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                     console.log("CALLING LOOP THU AGAIN"); 
                     loopThruQuestions(); 
@@ -146,7 +170,7 @@ function loopThruQuestions() {
             // userAnsweredAlready = false; 
         }
     }
-    else if(count == 1)
+    else if(count == 1 && numQuestionsAnswered != questionSize)
         {
             console.log("In LOOP THRU, COUNT = 1"); 
             // display question
@@ -158,6 +182,9 @@ function loopThruQuestions() {
             answer4.textContent = q2_ansArray[3];
 
             if(userAnsweredAlready){
+                // question was answered already, increment questions answered 
+                numQuestionsAnswered++; 
+                console.log("QUESTIONS ASKED: " , numQuestionsAnswered); 
                 // display whether it is correct or incorrect 
                 switch(userAnswer)
                 {
@@ -166,7 +193,9 @@ function loopThruQuestions() {
                         displayBorder.textContent = "Wrong!"; 
                         count = randomCount(questionSize, 1);
                         userAnsweredAlready = false; 
-                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        userTimer = userTimer - 5; 
+                        console.log("Timer in case 4 has been decremented", userTimer); 
+                        console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                         console.log("CALLING LOOP THU AGAIN"); 
                         loopThruQuestions(); 
                     break; 
@@ -175,7 +204,8 @@ function loopThruQuestions() {
                         displayBorder.textContent = "Correct!"; 
                         count = randomCount(questionSize, 1);
                         userAnsweredAlready = false; 
-                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        console.log("Timer in case2 has not been changed"); 
+                        console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                         console.log("CALLING LOOP THU AGAIN"); 
                         loopThruQuestions(); 
                     break;  
@@ -184,6 +214,8 @@ function loopThruQuestions() {
                         displayBorder.textContent = "Wrong!"; 
                         count = randomCount(questionSize, 1);
                         userAnsweredAlready = false; 
+                        userTimer = userTimer - 5; 
+                        console.log("Timer in case 4 has been decremented", userTimer); 
                          console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                         console.log("CALLING LOOP THU AGAIN"); 
                         loopThruQuestions(); 
@@ -193,7 +225,9 @@ function loopThruQuestions() {
                         displayBorder.textContent = "Wrong!"; 
                         count = randomCount(questionSize, 1);
                         userAnsweredAlready = false; 
-                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        userTimer = userTimer - 5; 
+                        console.log("Timer in case 4 has been decremented", userTimer); 
+                        console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
                         console.log("CALLING LOOP THU AGAIN"); 
                         loopThruQuestions(); 
                     break; 
@@ -204,7 +238,22 @@ function loopThruQuestions() {
                 userAnsweredAlready = false; 
              }
         }
-    //}    
+        else 
+        {
+            // stop the timer 
+            setTime(); 
+            console.log("completed questions, open highest scores page");
+        }
+    }  
+    // userTimer has reached 0 
+    else 
+    {
+        // have setTime clear out 
+        setTime();
+        // bring out 
+        console.log("timer is 0, open highest scores page"); 
+        // hide all the 
+    }  
 }
 
 function randomCount(numOfQuestions, numCanNotBe) 
@@ -219,7 +268,60 @@ function randomCount(numOfQuestions, numCanNotBe)
     return questionSelection; 
 }
 
+function setTime() {
+    // setInterval is a set timer that will execute a specific action or event 
+    displayTimer.style.display = "block"; 
+    var timerInterval = setInterval(function() {
+      userTimer--;
+      displayTimer.textContent = userTimer + " seconds left";
+  
+      if(userTimer === 0) {
+        // stop the timer  
+        clearInterval(timerInterval);
+        // change color to red 
+        displayTimer.style.backgroundColor = "#ffcccb";
+      }
+      else if(numQuestionsAnswered == questionSize)
+      {
+        // stop the timer 
+        clearInterval(timerInterval);
+        // change the color to red 
+        displayTimer.style.backgroundColor = "#ffcccb"; 
+      }
+  
+    }, 1000);
+  }
+  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ROUGH DRAFT============================================================
 // IDEA 
     // page array 
     // switch on each count 
