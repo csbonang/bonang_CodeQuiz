@@ -1,5 +1,6 @@
 # bonang_CodeQuiz
-
+<b> Programmer: Clarisse Bonang </b>
+<b> Deployed link: </b> <br>https://csbonang.github.io/bonang_CodeQuiz/
 # References 
 <b> Vertical Button Groups </b> <br> 
 https://www.w3schools.com/bootstrap/bootstrap_button_groups.asp

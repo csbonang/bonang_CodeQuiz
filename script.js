@@ -23,6 +23,8 @@ var userAnswer = -1;
 var count = -1;
 // number of questions 
 var questionSize = 2; 
+// CHECK if user has answered 
+var userAnsweredAlready = false; 
 
 // once the start button is clicked, loop through the quiz questions 
 startQuiz.addEventListener('click', function(event)
@@ -50,26 +52,30 @@ answer1.onclick = function(){
     console.log("selected answer1"); 
     userAnswer = 1; 
     console.log("userAnswer: " + userAnswer); 
+    userAnsweredAlready = true; 
     loopThruQuestions(); 
 }; 
 answer2.onclick = function(){
     console.log("selected answer2"); 
     userAnswer = 2; 
     console.log("userAnswer: " + userAnswer); 
+    userAnsweredAlready = true; 
     loopThruQuestions(); 
 }; 
 
 answer3.onclick = function(){
-    console.log("selected answer1"); 
+    console.log("selected answer3"); 
     userAnswer = 3; 
     console.log("userAnswer: " + userAnswer); 
+    userAnsweredAlready = true; 
     loopThruQuestions(); 
 }; 
 
 answer4.onclick = function(){
-    console.log("selected answer1"); 
+    console.log("selected answer4"); 
     userAnswer = 4; 
     console.log("userAnswer: " + userAnswer);
+    userAnsweredAlready = true; 
     loopThruQuestions();  
 }; 
 
@@ -95,31 +101,51 @@ function loopThruQuestions() {
             answer3.textContent = q1_ansArray[2]; 
             answer4.textContent = q1_ansArray[3];
             // display whether it is correct or incorrect 
+        if(userAnsweredAlready){
             switch(userAnswer)
             {
                 case 1: //console.log("incorrect"); 
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0); 
+                    userAnsweredAlready = false; 
+                    console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                    console.log("CALLING LOOP THU AGAIN"); 
+                    loopThruQuestions(); 
                 break; 
                 case 2: console.log("incorrect");
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0); 
+                    userAnsweredAlready = false; 
+                    console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                    console.log("CALLING LOOP THU AGAIN"); 
+                    loopThruQuestions(); 
                 break;  
                 case 3: console.log("correct");
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Correct!"; 
                     count = randomCount(questionSize, 0); 
+                    userAnsweredAlready = false; 
+                    console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                    console.log("CALLING LOOP THU AGAIN"); 
                     loopThruQuestions(); 
+                    
                 break;  
                 case 4: console.log("incorrect"); 
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0);
+                    userAnsweredAlready = false; 
+                    console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                    console.log("CALLING LOOP THU AGAIN"); 
+                    loopThruQuestions(); 
                 break; 
             }
+            console.log("Setting userAnsweredAlready to: ", userAnsweredAlready); 
+            // userAnsweredAlready = false; 
         }
+    }
     else if(count == 1)
         {
             console.log("In LOOP THRU, COUNT = 1"); 
@@ -130,28 +156,53 @@ function loopThruQuestions() {
             answer2.textContent = q2_ansArray[1]; 
             answer3.textContent = q2_ansArray[2]; 
             answer4.textContent = q2_ansArray[3];
-            // display whether it is correct or incorrect 
-            switch(userAnswer)
-            {
-                case 1: console.log("incorrect"); 
-                    displayBorder.style.display = "block"; 
-                    displayBorder.textContent = "Wrong!"; 
-                break; 
-                case 2: console.log("correct");
-                    displayBorder.style.display = "block"; 
-                    displayBorder.textContent = "Correct!"; 
-                    count = randomCount(questionSize, 1);
-                    loopThruQuestions(); 
-                break;  
-                case 3: console.log("incorrect");
-                    displayBorder.style.display = "block"; 
-                    displayBorder.textContent = "Wrong!"; 
-                break;  
-                case 4: console.log("incorrect"); 
-                    displayBorder.style.display = "block"; 
-                    displayBorder.textContent = "Wrong!"; 
-                break; 
-            }
+
+            if(userAnsweredAlready){
+                // display whether it is correct or incorrect 
+                switch(userAnswer)
+                {
+                    case 1: console.log("incorrect"); 
+                        displayBorder.style.display = "block"; 
+                        displayBorder.textContent = "Wrong!"; 
+                        count = randomCount(questionSize, 1);
+                        userAnsweredAlready = false; 
+                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        console.log("CALLING LOOP THU AGAIN"); 
+                        loopThruQuestions(); 
+                    break; 
+                    case 2: console.log("correct");
+                        displayBorder.style.display = "block"; 
+                        displayBorder.textContent = "Correct!"; 
+                        count = randomCount(questionSize, 1);
+                        userAnsweredAlready = false; 
+                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        console.log("CALLING LOOP THU AGAIN"); 
+                        loopThruQuestions(); 
+                    break;  
+                    case 3: console.log("incorrect");
+                        displayBorder.style.display = "block"; 
+                        displayBorder.textContent = "Wrong!"; 
+                        count = randomCount(questionSize, 1);
+                        userAnsweredAlready = false; 
+                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        console.log("CALLING LOOP THU AGAIN"); 
+                        loopThruQuestions(); 
+                    break;  
+                    case 4: console.log("incorrect"); 
+                        displayBorder.style.display = "block"; 
+                        displayBorder.textContent = "Wrong!"; 
+                        count = randomCount(questionSize, 1);
+                        userAnsweredAlready = false; 
+                         console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
+                        console.log("CALLING LOOP THU AGAIN"); 
+                        loopThruQuestions(); 
+                    break; 
+                }
+                // TODO: look into why this is disrupting the display
+                // loopThruQuestions(); 
+                console.log("Setting userAnsweredAlready to: ", userAnsweredAlready); 
+                userAnsweredAlready = false; 
+             }
         }
     //}    
 }
