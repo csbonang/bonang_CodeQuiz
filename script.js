@@ -1,12 +1,14 @@
 var questionAnswered = false;
 var stats = 
 {
-    currentScore: 0, 
+     
     // TODO: MAKE THIS AN ARRAY or make a dictionary? 
     highestScore: 0, 
     initial: ""
 }; 
 
+// user's current score 
+var currentScore = 0; 
 // start button to initiate program
 var startQuiz = document.getElementById("start"); 
 // class that contains all the buttons 
@@ -142,6 +144,8 @@ function loopThruQuestions() {
                     loopThruQuestions(); 
                 break;  
                 case 3: console.log("correct");
+                    // user entered correct score., increase
+                    currentScore++;
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Correct!"; 
                     count = randomCount(questionSize, 0); 
@@ -200,6 +204,7 @@ function loopThruQuestions() {
                         loopThruQuestions(); 
                     break; 
                     case 2: console.log("correct");
+                        currentScore++; 
                         displayBorder.style.display = "block"; 
                         displayBorder.textContent = "Correct!"; 
                         count = randomCount(questionSize, 1);
@@ -240,6 +245,7 @@ function loopThruQuestions() {
         }
         else 
         {
+            // all questions have been answered 
             // stop the timer 
             setTime(); 
             console.log("completed questions, open highest scores page");
@@ -280,6 +286,8 @@ function setTime() {
         clearInterval(timerInterval);
         // change color to red 
         displayTimer.style.backgroundColor = "#ffcccb";
+        document.querySelector('.initials').style.display = "block"; 
+        submitButton.addEventListener('click', submitInitials);
       }
       else if(numQuestionsAnswered == questionSize)
       {
@@ -287,12 +295,36 @@ function setTime() {
         clearInterval(timerInterval);
         // change the color to red 
         displayTimer.style.backgroundColor = "#ffcccb"; 
+        // give user points for making it before the deadline 
+        currentScore *= userTimer; 
+        console.log("current Score, timer STOPPED: ", currentScore);
+        document.querySelector('.initials').style.display = "block"; 
+        submitButton.addEventListener('click', submitInitials); 
       }
-  
+
+      
+
+
     }, 1000);
   }
   
+   var submitButton = document.getElementById('submit'); 
+   function submitInitials(event)
+   {
+        event.preventDefault(); 
+        console.log("in initials!!!");
+        var user = document.getElementById('userInitials').value; 
+        var userScore = JSON.parse(localStorage.getItem('codeQuizScore')) || []; 
+        userScore.push({
+            score: currentScore, 
+            initialsUser: user, 
 
+        }); 
+        console.log("user score: ", userScore); 
+        localStorage.setItem('codeQuizScore', JSON.stringify(userScore)); 
+
+   }
+    
 
 
 
