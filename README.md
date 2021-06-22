@@ -26,10 +26,15 @@ then the quiz is over. If the user completes the quiz before the time, extra poi
 5. correct/ incorrect appears once user selects their answer 
 
 # Screenshot
+<b>START PAGE</b> <br> 
 ![alt start Page](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_1.PNG) 
+<b>QUESTION 1 </b> <br> 
 ![alt question1](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_2.PNG)
+<b>QUESTION 2 </b> <br> 
 ![alt question2](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_3.PNG)
+<b>SAVE SCORE </b> <br> 
 ![alt save score](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_4.PNG)
+<b>SCORE BOARD </b> <br> 
 ![alt score board](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_5.PNG) 
 
 
