@@ -18,13 +18,14 @@ then the quiz is over. If the user completes the quiz before the time, extra poi
 4. When all questions are answered or the timer reaches 0, then the game is over
 5. When the game is over, then I can save my initials and my score
 
-
 # Noteworthy Features 
 1. timer turns red when quiz is over or user finishes quiz early 
 2. extra points are allotted to user's score if they complete the quiz early 
 3. able to clear highschore board 
 4. able to go back to start page 
 5. correct/ incorrect appears once user selects their answer 
+
+# Screenshot 
 
 
 # References 
