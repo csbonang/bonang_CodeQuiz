@@ -61,6 +61,7 @@ h2
 #timer 
 {
     /* do not display until user clicks start*/
+    color:black; 
     display: none;
     background-color: rgb(200, 248, 200);
     border: 2px solid gray; 
@@ -75,10 +76,35 @@ h2
     /* increases font-size */
     font-size: x-large;
     /* increases width  */
-    width: 12vw;
+    width: 15vw;
     /* center timer text in box  */
     text-align: center;
 
+}
+/* make hyperlink on top left corner */
+#scoresLink
+{
+      /* do not display until user clicks start*/
+      /* TODO */
+      display: none;
+      color: white; 
+      text-decoration: none;
+      background-color: rgb(201, 141, 241);
+      border: 2px solid gray; 
+      border-radius: 2vw;
+      position:relative; 
+      /* timer floats to the left */
+      float:left; 
+      /* ensures that it doesn't touch side of page*/
+      transform:translateX(3vw); 
+      /* bold font */
+      font-weight: bold;
+      /* increases font-size */
+      font-size: x-large;
+      /* increases width  */
+      width: 15vw;
+      /* center timer text in box  */
+      text-align: center;
 }
 /* form that provides text fields for initials once user completes quiz */
 /* display none until user is done with quiz */

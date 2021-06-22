@@ -1,10 +1,3 @@
-// var stats = 
-// {
-     
-//     // TODO: MAKE THIS AN ARRAY or make a dictionary? 
-//     highestScore: 0, 
-//     initial: ""
-// }; 
 
 /*=========Variables==============================================================*/ 
 // submit button:         used when user submits initials 
@@ -15,8 +8,8 @@ var currentScore = 0;
 var displayQuestion = document.getElementById('question'); 
 // startQuiz:             start button to initiate program
 var startQuiz = document.getElementById("start"); 
-// answerButtons:         class that contains all the buttons 
-var answerButtons = document.getElementsByClassName("questionBlock"); 
+// highscoresLink:        hyperlink to highscores 
+var highscoresLink = document.getElementById('scoresLink'); 
 // answer#:               buttons that display potential answers for each question
 var answer1 = document.getElementById('ans-1');
 var answer2 = document.getElementById('ans-2');
@@ -56,6 +49,8 @@ startQuiz.addEventListener('click', function(event)
     answer2.style.display = "block"; 
     answer3.style.display = "block"; 
     answer4.style.display = "block"; 
+    // display link to high scores 
+    highscoresLink.style.display = "block"; 
     // call set time function to start timer 
     setTime(); 
     // set the index of the question array to the random number generated and a number it cannot be 
@@ -152,6 +147,7 @@ function loopThruQuestions() {
                 case 3: console.log("correct");
                     // user entered correct score, increase current score 
                     currentScore++;
+                    console.log("CORRECT, CURRENT SCORE: ", currentScore); 
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Correct!"; 
                     count = randomCount(questionSize, 0); 
@@ -214,8 +210,9 @@ function loopThruQuestions() {
                     break; 
                     case 2: console.log("correct");
                         currentScore++; 
+                        console.log("CORRECT, CURRENT SCORE: ", currentScore); 
                         displayBorder.style.display = "block"; 
-                        displayBorder.textContent = "Correct!"; 
+                        displayBorder.textContent = "Correct!";
                         count = randomCount(questionSize, 1);
                         userAnsweredAlready = false; 
                         console.log("Timer in case2 has not been changed"); 
@@ -250,20 +247,20 @@ function loopThruQuestions() {
                 userAnsweredAlready = false; 
              }
         }
-        // all questions have been answered 
+        //all questions have been answered 
         else 
         {
             // all questions have been answered --> stop the timer 
+            console.log("ALL QUESTIONS ANSWERED, DONE");
             setTime(); 
-            console.log("completed questions, open highest scores page");
         }
     }  
-    // userTimer has reached time 0 
+    //userTimer has reached time 0 
     else 
     {
         // all questions have been answered --> stop the timer 
-        setTime();
-        console.log("timer is 0, open highest scores page");  
+        console.log("TIMER REACHED 0, DONE");  
+        setTime(); 
     }  
 }
 /* randomCount:: provides a random number in order to display a random question 
@@ -293,49 +290,63 @@ function setTime() {
     displayTimer.style.display = "block"; 
     // setInterval is a set timer that will execute a specific action or event 
     var timerInterval = setInterval(function() {
-      userTimer--;
-      displayTimer.textContent = userTimer + " seconds left";
+    //   displayTimer.textContent = userTimer + " seconds left";
   
       // quiz time ran out, quiz completed 
       if(userTimer === 0) {
         // stop the timer  
         clearInterval(timerInterval);
+        displayTimer.textContent = "Time Finished: " + userTimer;
         // change color to red 
         displayTimer.style.backgroundColor = "#ffcccb";
-         // TODO: hide the quiz block 
         // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
         answer1.style.display = "none"; 
         answer2.style.display = "none"; 
         answer3.style.display = "none"; 
         answer4.style.display = "none"; 
         displayQuestion.style.display = "none"; 
-        displayTimer.style.display = "none"; 
+        displayTimer.style.display = "block"; 
         displayBorder.style.display = "none"; 
+        console.log("if :: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore); 
         // display the form that prompts user for initials 
         document.querySelector('.initials').style.display = "block"; 
         submitButton.addEventListener('click', submitInitials);
       }
-      // user is done with quiz 
-      else if(numQuestionsAnswered == questionSize)
+      // completed questions answered and timer does not = 0 
+      else if(numQuestionsAnswered == questionSize && userTimer != 0)
       {
         // stop the timer 
         clearInterval(timerInterval);
+        displayTimer.textContent = "Time Finished: " + userTimer;
         // change the color to red 
         displayTimer.style.backgroundColor = "#ffcccb"; 
-        // give user points for making it before the deadline 
+        // add the user's time to their points as bonus points for completing the quiz before the deadline
+        console.log("==================================");  
+        console.log("DONE | TIMER | CURRENT SCORE: ", currentScore); 
+        console.log("TIME: ", userTimer); 
         currentScore += userTimer; 
-        console.log("current Score, timer STOPPED: ", currentScore);
+        console.log("else if:: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore);
         // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
         answer1.style.display = "none"; 
         answer2.style.display = "none"; 
         answer3.style.display = "none"; 
         answer4.style.display = "none"; 
         displayQuestion.style.display = "none"; 
-        displayTimer.style.display = "none"; 
+        // example displays the timer but I don't find it necessary because it will be displayed in highscores
+        displayTimer.style.display = "block";
+        // displayTimer.textContent = "Your Time: " + userTimer; 
         displayBorder.style.display = "none"; 
+        console.log("FINAL SCORE: ", currentScore); 
+        console.log("==================================");  
         // display the form that prompts user for initials 
         document.querySelector('.initials').style.display = "block"; 
         submitButton.addEventListener('click', submitInitials); 
+      }
+      // decrement the time 
+      else 
+      {
+        userTimer--;
+        displayTimer.textContent = userTimer + " seconds left";
       }
     }, 1000);
   }
@@ -356,6 +367,7 @@ function setTime() {
         }); 
         console.log("user score: ", userScore); 
         localStorage.setItem('codeQuizScore', JSON.stringify(userScore)); 
+        console.log("current Score, timer STOPPED: ", currentScore);
         // load the highscores page 
         window.location = "scores.html"; 
    }
