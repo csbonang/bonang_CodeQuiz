@@ -1,5 +1,5 @@
 # bonang_CodeQuiz
-<b> Programmer: Clarisse Bonang </b>
+<b> Programmer: Clarisse Bonang </b> <br> 
 <b> Deployed link: </b> <br>https://csbonang.github.io/bonang_CodeQuiz/
 
 # Description 
