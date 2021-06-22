@@ -25,7 +25,14 @@ then the quiz is over. If the user completes the quiz before the time, extra poi
 4. able to go back to start page 
 5. correct/ incorrect appears once user selects their answer 
 
-# Screenshot 
+# Screenshot
+![alt start Page](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_1.PNG) 
+![alt question1](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_2.PNG)
+![alt question2](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_3.PNG)
+![alt save score](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_4.PNG)
+![alt score board](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_5.PNG) 
+
+
 
 
 # References 
