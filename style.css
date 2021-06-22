@@ -80,7 +80,11 @@ h2
     text-align: center;
 
 }
+/* form that provides text fields for initials once user completes quiz */
+/* display none until user is done with quiz */
 .initials
 {
     display:none; 
 }
+
+

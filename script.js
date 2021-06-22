@@ -1,40 +1,48 @@
-var questionAnswered = false;
-var stats = 
-{
+// var stats = 
+// {
      
-    // TODO: MAKE THIS AN ARRAY or make a dictionary? 
-    highestScore: 0, 
-    initial: ""
-}; 
+//     // TODO: MAKE THIS AN ARRAY or make a dictionary? 
+//     highestScore: 0, 
+//     initial: ""
+// }; 
 
-// user's current score 
+/*=========Variables==============================================================*/ 
+// submit button:         used when user submits initials 
+var submitButton = document.getElementById('submit'); 
+// currentScore:          user's current score 
 var currentScore = 0; 
-// start button to initiate program
+// displayQuestion:       variable will be used to display current question 
+var displayQuestion = document.getElementById('question'); 
+// startQuiz:             start button to initiate program
 var startQuiz = document.getElementById("start"); 
-// class that contains all the buttons 
+// answerButtons:         class that contains all the buttons 
 var answerButtons = document.getElementsByClassName("questionBlock"); 
-// buttons that display potential answers for each question
+// answer#:               buttons that display potential answers for each question
 var answer1 = document.getElementById('ans-1');
 var answer2 = document.getElementById('ans-2');
 var answer3 = document.getElementById('ans-3');
 var answer4 = document.getElementById('ans-4'); 
-// used to displays timer 
+// displayTime:           used to displays timer 
 var displayTimer = document.getElementById('timer'); 
-// displays a border 
+// displatBorder:         displays a border 
 var displayBorder = document.getElementById('answerBorder'); 
-// tracks user's choice from question 
+// userAnswer:            tracks user's choice from question 
 var userAnswer = -1; 
-// question index
+// count:                 int that holds question index
 var count = -1;
-// number of questions 
+// questionSize:          int that holds number of questions 
 var questionSize = 2; 
-// CHECK if user has answered 
+// userAnsweredAlready:   boolean that checks if user has answered 
 var userAnsweredAlready = false; 
-// TODO: Number of questions answered 
+// numQuestionsAnswered:  Number of questions answered 
 var numQuestionsAnswered = 0; 
-// set the timer 
-var userTimer = 20; 
-// once the start button is clicked, loop through the quiz questions 
+// userTimer:             set the timer 
+var userTimer = 21; 
+// questionAnswered:      boolean that checks if the questions has already been answered
+var questionAnswered = false;
+
+/*===========Start of Code======================================================*/ 
+/*startQuiz:: once the start button is clicked, loop through the quiz questions*/ 
 startQuiz.addEventListener('click', function(event)
 {
     console.log("start quiz is being called"); 
@@ -48,7 +56,7 @@ startQuiz.addEventListener('click', function(event)
     answer2.style.display = "block"; 
     answer3.style.display = "block"; 
     answer4.style.display = "block"; 
-    // TODO: call set time function 
+    // call set time function to start timer 
     setTime(); 
     // set the index of the question array to the random number generated and a number it cannot be 
     count = randomCount(questionSize, -1); 
@@ -57,7 +65,7 @@ startQuiz.addEventListener('click', function(event)
     loopThruQuestions(); 
 }); 
 
-// Update userAnswer on click 
+// answer#:: Update userAnswer on click 
 answer1.onclick = function(){
     console.log("selected answer1"); 
     userAnswer = 1; 
@@ -72,7 +80,6 @@ answer2.onclick = function(){
     userAnsweredAlready = true; 
     loopThruQuestions(); 
 }; 
-
 answer3.onclick = function(){
     console.log("selected answer3"); 
     userAnswer = 3; 
@@ -80,7 +87,6 @@ answer3.onclick = function(){
     userAnsweredAlready = true; 
     loopThruQuestions(); 
 }; 
-
 answer4.onclick = function(){
     console.log("selected answer4"); 
     userAnswer = 4; 
@@ -89,35 +95,35 @@ answer4.onclick = function(){
     loopThruQuestions();  
 }; 
 
-// go through the questions 
+/* loopThruQuestions:: displays the questions and answers */ 
 function loopThruQuestions() {
   
   console.log("In loopThruQuestions"); 
-  // qArray:: array of questions 
+  // qArray: array of questions 
   var qArray = ['Inside which HTML element do we put the JavaScript?','How does a "for" loop start?'];
-  // q1_ansArray:: arrays of potential answers for question 1 
+  // q1_ansArray:arrays of potential answers for question 1 
   var q1_ansArray = ['<javascript>', '<js>', '<script>', '<scripting>']; 
   var q2_ansArray = ['for (i = 0; i <= 5)', 'for (i = 0; i <= 5; i++)', 'for i = 1 to 5', 'for (i <= 5; i++)']; 
   // update the html with the first question  
   console.log("loopThruQuestions count: ", count); 
   
- // TODO: the problem with this is that is the userTime is 20 but we completed the questions, 
- // it will still continue 
- // (userTimer > 0) ||
+  // if the timer is greater than 0, then keep displaying questions and answers
   if( userTimer > 0 ){
     if(count == 0 && numQuestionsAnswered != questionSize){
             console.log("In LOOP THRU, COUNT = 0"); 
-            document.getElementById('question').innerHTML = qArray[count];
+            // TODO: document.getElementById('question').innerHTML = qArray[count];
+            displayQuestion.innerHTML = qArray[count];
             // update the html with the potential answers 
             answer1.textContent = q1_ansArray[0]; 
             answer2.textContent = q1_ansArray[1]; 
             answer3.textContent = q1_ansArray[2]; 
             answer4.textContent = q1_ansArray[3];
-            // display whether it is correct or incorrect 
+        // if the question has already been answered, then display a correct/incorrect message
         if(userAnsweredAlready){
-            // TODO: question was answered already, increment questions answered 
+            // question was answered already, increment questions answered 
             numQuestionsAnswered++; 
             console.log("QUESTIONS ASKED: " , numQuestionsAnswered);
+            // the switch statement below executes a series of tasks based on the user's answer 
             switch(userAnswer)
             {
                 case 1: console.log("incorrect"); 
@@ -125,7 +131,7 @@ function loopThruQuestions() {
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0); 
                     userAnsweredAlready = false; 
-                    //TODO: if incorrect, then decrement timer by 5. 
+                    // if incorrect, then decrement timer by 5. 
                     userTimer = userTimer - 5; 
                     console.log("Timer in case 1 has been decremented: ", userTimer); 
                     console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
@@ -144,7 +150,7 @@ function loopThruQuestions() {
                     loopThruQuestions(); 
                 break;  
                 case 3: console.log("correct");
-                    // user entered correct score., increase
+                    // user entered correct score, increase current score 
                     currentScore++;
                     displayBorder.style.display = "block"; 
                     displayBorder.textContent = "Correct!"; 
@@ -162,7 +168,6 @@ function loopThruQuestions() {
                     displayBorder.textContent = "Wrong!"; 
                     count = randomCount(questionSize, 0);
                     userAnsweredAlready = false; 
-                    //TODO: if correct, leave timer as is  
                     userTimer = userTimer - 5; 
                     console.log("Timer in case 4 has been decremented", userTimer); 
                     console.log("Setting userAnsweredAlready to: ", userAnsweredAlready);
@@ -174,11 +179,15 @@ function loopThruQuestions() {
             // userAnsweredAlready = false; 
         }
     }
+    /* if it is the next question in that array[1], and all the numbers have not been answered
+       display the question and potential answers
+    */ 
     else if(count == 1 && numQuestionsAnswered != questionSize)
         {
             console.log("In LOOP THRU, COUNT = 1"); 
             // display question
-            document.getElementById('question').innerHTML = qArray[count];
+            // TODO: document.getElementById('question').innerHTML = qArray[count];
+            displayQuestion.innerHTML = qArray[count];
             // update the html with the potential answers 
             answer1.textContent = q2_ansArray[0]; 
             answer2.textContent = q2_ansArray[1]; 
@@ -186,7 +195,7 @@ function loopThruQuestions() {
             answer4.textContent = q2_ansArray[3];
 
             if(userAnsweredAlready){
-                // question was answered already, increment questions answered 
+                // question has been answered already, increment questions answered 
                 numQuestionsAnswered++; 
                 console.log("QUESTIONS ASKED: " , numQuestionsAnswered); 
                 // display whether it is correct or incorrect 
@@ -237,31 +246,33 @@ function loopThruQuestions() {
                         loopThruQuestions(); 
                     break; 
                 }
-                // TODO: look into why this is disrupting the display
-                // loopThruQuestions(); 
                 console.log("Setting userAnsweredAlready to: ", userAnsweredAlready); 
                 userAnsweredAlready = false; 
              }
         }
+        // all questions have been answered 
         else 
         {
-            // all questions have been answered 
-            // stop the timer 
+            // all questions have been answered --> stop the timer 
             setTime(); 
             console.log("completed questions, open highest scores page");
         }
     }  
-    // userTimer has reached 0 
+    // userTimer has reached time 0 
     else 
     {
-        // have setTime clear out 
+        // all questions have been answered --> stop the timer 
         setTime();
-        // bring out 
-        console.log("timer is 0, open highest scores page"); 
-        // hide all the 
+        console.log("timer is 0, open highest scores page");  
     }  
 }
-
+/* randomCount:: provides a random number in order to display a random question 
+                 from the array. It also safeguards against selecting a question 
+                 already asked. Notice, the parameters inlclude numofQuestions 
+                 and numCanNotBe. randomCOunt can only provide a random # within 
+                 the array size and cannot assign the new question number to one 
+                 that has been already used. 
+*/ 
 function randomCount(numOfQuestions, numCanNotBe) 
 {
     var questionSelection = Math.floor(Math.random() * numOfQuestions);
@@ -274,21 +285,37 @@ function randomCount(numOfQuestions, numCanNotBe)
     return questionSelection; 
 }
 
+/*setTime:: starts the timer, stops the timer, and includes checkpoints 
+            to ensure the timer stops when all questions have been 
+            answered or time ran out. 
+*/             
 function setTime() {
-    // setInterval is a set timer that will execute a specific action or event 
     displayTimer.style.display = "block"; 
+    // setInterval is a set timer that will execute a specific action or event 
     var timerInterval = setInterval(function() {
       userTimer--;
       displayTimer.textContent = userTimer + " seconds left";
   
+      // quiz time ran out, quiz completed 
       if(userTimer === 0) {
         // stop the timer  
         clearInterval(timerInterval);
         // change color to red 
         displayTimer.style.backgroundColor = "#ffcccb";
+         // TODO: hide the quiz block 
+        // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
+        answer1.style.display = "none"; 
+        answer2.style.display = "none"; 
+        answer3.style.display = "none"; 
+        answer4.style.display = "none"; 
+        displayQuestion.style.display = "none"; 
+        displayTimer.style.display = "none"; 
+        displayBorder.style.display = "none"; 
+        // display the form that prompts user for initials 
         document.querySelector('.initials').style.display = "block"; 
         submitButton.addEventListener('click', submitInitials);
       }
+      // user is done with quiz 
       else if(numQuestionsAnswered == questionSize)
       {
         // stop the timer 
@@ -298,17 +325,24 @@ function setTime() {
         // give user points for making it before the deadline 
         currentScore *= userTimer; 
         console.log("current Score, timer STOPPED: ", currentScore);
+        // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
+        answer1.style.display = "none"; 
+        answer2.style.display = "none"; 
+        answer3.style.display = "none"; 
+        answer4.style.display = "none"; 
+        displayQuestion.style.display = "none"; 
+        displayTimer.style.display = "none"; 
+        displayBorder.style.display = "none"; 
+        // display the form that prompts user for initials 
         document.querySelector('.initials').style.display = "block"; 
         submitButton.addEventListener('click', submitInitials); 
       }
-
-      
-
-
     }, 1000);
   }
-  
-   var submitButton = document.getElementById('submit'); 
+
+  /* submitInitials:: the submit button function that assigns the user's score 
+     to a variable that is stored in local storage 
+  */ 
    function submitInitials(event)
    {
         event.preventDefault(); 
