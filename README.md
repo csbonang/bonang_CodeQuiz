@@ -3,14 +3,13 @@
 <b> Deployed link: </b> <br>https://csbonang.github.io/bonang_CodeQuiz/
 
 # Description 
-bonang_CodeQuiz program serves as a timed coding quiz. <br>
-<br>The program displays 4 main pages in the following order of: start, quiz, include, and scores. 
-<br>Start displays quiz instructions and a start button. Once clicked, the page displays questions 
-and mutilple choice answers.The user is able to select an answer. 
-<br>Then, a message will display if their answer is correct or incorrect. 
-<br>If the user's answer is correct, <b>a point is allotted to their score.</b> 
-<br>To the right of the question block, a timer is displayed. 
-<br>If the time leftover becomes <b> 0 or all the questions are finished</b>, <br>then the quiz is over. <br>If the user <b>completes the quiz </b> before the time, extra points are allotted to their score. 
+The program displays 4 main pages in the following order: start, quiz, include, and scores. <br> 
+Start displays quiz instructions and a start button. Once clicked, the page displays questions and multiple choice answers. <br> The user can select an answer.
+Then, a message will display if their answer is correct or incorrect.<br> 
+If the user's answer is correct, a point is allotted to their score. <br> 
+To the right of the question block, a timer is displayed.
+If the time leftover becomes 0 or all the questions are finished,<br> 
+then the quiz is over. If the user completes the quiz before the time, extra points are added to their score.
 
 # Requirements 
 1. When I click the start button, then a timer starts and I am presented with a question
