@@ -323,7 +323,7 @@ function setTime() {
         // change the color to red 
         displayTimer.style.backgroundColor = "#ffcccb"; 
         // give user points for making it before the deadline 
-        currentScore *= userTimer; 
+        currentScore += userTimer; 
         console.log("current Score, timer STOPPED: ", currentScore);
         // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
         answer1.style.display = "none"; 
@@ -356,133 +356,6 @@ function setTime() {
         }); 
         console.log("user score: ", userScore); 
         localStorage.setItem('codeQuizScore', JSON.stringify(userScore)); 
-
+        // load the highscores page 
+        window.location = "scores.html"; 
    }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ROUGH DRAFT============================================================
-// IDEA 
-    // page array 
-    // switch on each count 
-    // counter that increments 
-    // question array --> random var that randomize 
-
-    // controls hide and show in css 
-
-    // OR 
-    // 3 pages 
-    // intro.html, allDone.html, 
-    //questions.html (throw questions into an array)
-    // direct them to the html page 
-
-    // document,getelementById(point1).innerHTML = 
-
-    //}
-  // while the question has been answered and is correct, display the next question
-//   while (userAnswer != -1) {
-//     if(checkAnswer){
-//         count++;
-//         document.getElementById('question').innerHTML = qArray[count];
-//         questionAnswered = false; 
-//     }
-//     else 
-//     {
-//         // TODO: in css file, include a borderline above 
-//         document.getElementById('incorrectAnswer').innerHTML = "Wrong!"; 
-//     }
-//   }
-
-
-
-  // if they answered and have selected q1_ansArray 
-  // then display correct 
-  // move on to next question 
-  // else 
-  // display incorrect 
-  // decrement -5 from timer 
-  // move on to next question 
-   
-  
-
-  
-  // TODO: check if the answer is correct 
-  // if correct, then go to the next question 
-  // if incorrect, then display wrong 
-  
-
-
-  
-  // while the question has been answered and is correct, display the next question
-//   while (questionAnswered) {
-//     if(checkAnswer){
-//         count++;
-//         document.getElementById('question').innerHTML = qArray[count];
-//         questionAnswered = false; 
-//     }
-//     else 
-//     {
-//         // TODO: in css file, include a borderline above 
-//         document.getElementById('incorrectAnswer').innerHTML = "Wrong!"; 
-//     }
-//   }
-
-
-// function getAnswer() {
-//     var answer = userAnsweronclick; 
-//     questionAnswered = true; 
-//     return answer; 
-//   }
-  
-//   function checkAnswer() {
-//       var userAnswer = getAnswer; 
-       
-//   }
-
-
-
-/* 
-saveButton.addEventListener("click", function(event) {
-event.preventDefault();
-// create object we want to store student grade  
-var studentGrade = {
-  student: student.value,
-  grade: grade.value,
-  // trim will delete white spaces for you 
-  comment: comment.value.trim()
-};
-// local Storage can only hold string values 
-// JSON,string... WILL CONVERT the item to a string 
-localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
-renderMessage();
-
-});
-
-
-*/ 

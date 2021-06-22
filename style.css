@@ -68,7 +68,7 @@ h2
     position:relative; 
     /* timer floats to the right */
     float:right; 
-    /* ensures that it touch side of page*/
+    /* ensures that it doesn't touch side of page*/
     transform:translateX(-3vw); 
     /* bold font */
     font-weight: bold;
@@ -85,6 +85,56 @@ h2
 .initials
 {
     display:none; 
+    font-weight: bold;
+    float: left; 
+    /* ensures that it doesn't touch side of page*/
+    transform:translateX(5vw); 
+    width: 55vw;
+    /* position on page */
+    position: relative;
+    top: 3vw; 
+}
+/* changing color and positioning of the submit button from form */
+#submit 
+{
+    background-color: #8064A2;
 }
 
+/*=====For script2.js====================================================*/ 
+/*display high score title and style the position, color, and add border*/
+#highScoreTitle 
+{
+    font-weight: bold;
+    text-align: center;
+    color:white; 
+    border: 1px solid purple; 
+    background-color: #8064A2;
 
+}
+/*display the high schores output*/
+#highScoresOutput
+{
+    background-color:rgb(167, 142, 185);
+    /* text color change */
+    color: white;
+    /* center scores text in box  */
+     text-align:left;
+     padding-left: 2vw ;
+    /* border color, bold, and width */
+    border: 2vw solid #8064A2; 
+    border-radius: 2vw;
+    font-weight: bold;
+    width: 55vw;
+    /* position on page */
+    position: relative;
+    top: 3vw; 
+    transform:translateX(23vw); 
+}
+/*clear the score*/
+#clearScores, #goBack
+{
+    background-color:#8064A2; ;
+    position:relative; 
+    top:5vw; 
+    transform:translateX(38vw); 
+}
