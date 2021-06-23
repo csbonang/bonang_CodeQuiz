@@ -1,4 +1,3 @@
-
 /*=========Variables==============================================================*/ 
 // submit button:         used when user submits initials 
 var submitButton = document.getElementById('submit'); 
@@ -33,8 +32,6 @@ var numQuestionsAnswered = 0;
 var userTimer = 21; 
 // questionAnswered:      boolean that checks if the questions has already been answered
 var questionAnswered = false;
-// finishedQuiz:          boolean to check if quiz is finished 
-var finishedQuiz = false; 
 
 /*===========Start of Code======================================================*/ 
 /*startQuiz:: once the start button is clicked, loop through the quiz questions*/ 
@@ -254,7 +251,6 @@ function loopThruQuestions() {
         {
             // all questions have been answered --> stop the timer 
             console.log("ALL QUESTIONS ANSWERED, DONE");
-            // finishedQuiz = true; 
             setTime(); 
         }
     }  
@@ -263,7 +259,6 @@ function loopThruQuestions() {
     {
         // all questions have been answered --> stop the timer 
         console.log("TIMER REACHED 0, DONE");  
-        // finishedQuiz = true; 
         setTime(); 
     }  
 }
@@ -295,72 +290,68 @@ function setTime() {
     // setInterval is a set timer that will execute a specific action or event 
     var timerInterval = setInterval(function() {
     //   displayTimer.textContent = userTimer + " seconds left";
-  
-    console.log("SETTIME()"); 
-      // quiz time ran out, quiz completed
-        if(!finishedQuiz){
-            console.log("HELLO"); 
-            finishedQuiz = true; 
-            if(userTimer === 0) {
-                // stop the timer  
-                clearInterval(timerInterval);
-                displayTimer.textContent = "Time Finished: " + userTimer;
-                // change color to red 
-                displayTimer.style.backgroundColor = "#ffcccb";
-                // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
-                answer1.style.display = "none"; 
-                answer2.style.display = "none"; 
-                answer3.style.display = "none"; 
-                answer4.style.display = "none"; 
-                displayQuestion.style.display = "none"; 
-                displayTimer.style.display = "block"; 
-                displayBorder.style.display = "none"; 
-                console.log("if :: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore); 
-                // display the form that prompts user for initials 
-                document.querySelector('.initials').style.display = "block"; 
-                submitButton.addEventListener('click', submitInitials);
-            }
-            // completed questions answered and timer does not = 0 
-            else if(numQuestionsAnswered === questionSize)
-            {
-                // stop the timer 
-                clearInterval(timerInterval);
-                displayTimer.textContent = "Time Finished: " + userTimer;
-                // change the color to red 
-                displayTimer.style.backgroundColor = "#ffcccb"; 
-                // add the user's time to their points as bonus points for completing the quiz before the deadline
-                console.log("==================================");  
-                console.log("DONE | TIMER | CURRENT SCORE: ", currentScore); 
-                console.log("TIME: ", userTimer); 
-                currentScore += userTimer; 
-                console.log("else if:: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore);
-                // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
-                answer1.style.display = "none"; 
-                answer2.style.display = "none"; 
-                answer3.style.display = "none"; 
-                answer4.style.display = "none"; 
-                displayQuestion.style.display = "none"; 
-                // example displays the timer but I don't find it necessary because it will be displayed in highscores
-                displayTimer.style.display = "block";
-                // displayTimer.textContent = "Your Time: " + userTimer; 
-                displayBorder.style.display = "none"; 
-                console.log("FINAL SCORE: ", currentScore); 
-                console.log("==================================");  
-                // display the form that prompts user for initials 
-                document.querySelector('.initials').style.display = "block"; 
-                submitButton.addEventListener('click', submitInitials); 
-            }
+        if(userTimer ===0)
+        {
+            clearInterval(timerInterval);
+            displayTimer.textContent = "Time Finished: " + userTimer;
         }
-      // decrement the time 
         else 
         {
-            if(userTimer > 0 ){
-                 userTimer--;
-            }
+            userTimer--;
             displayTimer.textContent = userTimer + " seconds left";
-           
         }
     }, 1000);
+     // quiz time ran out, quiz completed 
+     if(userTimer === 0) {
+        // stop the timer  
+        clearInterval(timerInterval);
+        //displayTimer.textContent = "Time Finished: " + userTimer;
+        // change color to red 
+        displayTimer.style.backgroundColor = "#ffcccb";
+        // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
+        answer1.style.display = "none"; 
+        answer2.style.display = "none"; 
+        answer3.style.display = "none"; 
+        answer4.style.display = "none"; 
+        displayQuestion.style.display = "none"; 
+        displayTimer.style.display = "block"; 
+        displayBorder.style.display = "none"; 
+        console.log("if :: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore); 
+        // display the form that prompts user for initials 
+        document.querySelector('.initials').style.display = "block"; 
+        submitButton.addEventListener('click', submitInitials);
+      }
+      // completed questions answered and timer does not = 0 
+      else if(numQuestionsAnswered == questionSize && userTimer != 0)
+      {
+        // stop the timer 
+        clearInterval(timerInterval);
+        //displayTimer.textContent = "Time Finished: " + userTimer;
+        // change the color to red 
+        displayTimer.style.backgroundColor = "#ffcccb"; 
+        // add the user's time to their points as bonus points for completing the quiz before the deadline
+        console.log("==================================");  
+        console.log("DONE | TIMER | CURRENT SCORE: ", currentScore); 
+        console.log("TIME: ", userTimer); 
+        currentScore += userTimer; 
+        console.log("else if:: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore);
+        // hide the quiz block, this includes question, all answers, timer, and correct/incorrect
+        answer1.style.display = "none"; 
+        answer2.style.display = "none"; 
+        answer3.style.display = "none"; 
+        answer4.style.display = "none"; 
+        displayQuestion.style.display = "none"; 
+        // example displays the timer but I don't find it necessary because it will be displayed in highscores
+        displayTimer.style.display = "block";
+        // displayTimer.textContent = "Your Time: " + userTimer; 
+        displayBorder.style.display = "none"; 
+        console.log("FINAL SCORE: ", currentScore); 
+        console.log("==================================");  
+        // display the form that prompts user for initials 
+        document.querySelector('.initials').style.display = "block"; 
+        submitButton.addEventListener('click', submitInitials); 
+      }
+      // decrement the time 
   }
 
   /* submitInitials:: the submit button function that assigns the user's score 
@@ -382,10 +373,4 @@ function setTime() {
         console.log("current Score, timer STOPPED: ", currentScore);
         // load the highscores page 
         window.location = "scores.html"; 
-   }
-
-
-   function totalTime()
-   {
-       
    }
