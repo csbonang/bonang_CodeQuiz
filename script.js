@@ -293,7 +293,7 @@ function setTime() {
         if(userTimer ===0)
         {
             clearInterval(timerInterval);
-            displayTimer.textContent = "Time Finished: " + userTimer;
+            //displayTimer.textContent = "Time Finished: " + userTimer;
         }
         else 
         {
@@ -314,7 +314,7 @@ function setTime() {
         answer3.style.display = "none"; 
         answer4.style.display = "none"; 
         displayQuestion.style.display = "none"; 
-        displayTimer.style.display = "block"; 
+        displayTimer.style.display = "none"; 
         displayBorder.style.display = "none"; 
         console.log("if :: DONE | TIMER | ADDING TIMER | FINAL SCORE: ", currentScore); 
         // display the form that prompts user for initials 
@@ -326,6 +326,7 @@ function setTime() {
       {
         // stop the timer 
         clearInterval(timerInterval);
+
         //displayTimer.textContent = "Time Finished: " + userTimer;
         // change the color to red 
         displayTimer.style.backgroundColor = "#ffcccb"; 
@@ -342,7 +343,7 @@ function setTime() {
         answer4.style.display = "none"; 
         displayQuestion.style.display = "none"; 
         // example displays the timer but I don't find it necessary because it will be displayed in highscores
-        displayTimer.style.display = "block";
+        displayTimer.style.display = "none";
         // displayTimer.textContent = "Your Time: " + userTimer; 
         displayBorder.style.display = "none"; 
         console.log("FINAL SCORE: ", currentScore); 

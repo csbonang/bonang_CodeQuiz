@@ -1,4 +1,5 @@
 var scores = JSON.parse(localStorage.getItem('codeQuizScore')) || [];
+scores.sort((a, b) => b.score - a.score); 
 var initials = document.getElementById('highScoresOutput'); 
 var htmlContent = ""; 
 // get score information and assign it to htmlContent   
