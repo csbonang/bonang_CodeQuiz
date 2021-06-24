@@ -8,8 +8,9 @@ Start displays quiz instructions and a start button. Once clicked, the page disp
 Then, a message will display if their answer is correct or incorrect.<br> 
 If the user's answer is correct, a point is allotted to their score. <br> 
 To the right of the question block, a timer is displayed.
-If the time leftover becomes 0 or all the questions are finished,<br> 
-then the quiz is over. If the user completes the quiz before the time, extra points are added to their score.
+If the time leftover becomes 0 or all are completed,<br> 
+then the quiz is over.
+Once over, the user is prompted to type their initials into the text field. Finally, once the user submits their initials, a scoreboard is of all the user's initials and scores are ordered from highest to lowest. 
 
 # Requirements 
 1. When I click the start button, then a timer starts and I am presented with a question
@@ -18,12 +19,15 @@ then the quiz is over. If the user completes the quiz before the time, extra poi
 4. When all questions are answered or the timer reaches 0, then the game is over
 5. When the game is over, then I can save my initials and my score
 
+
 # Noteworthy Features 
-1. timer turns red when quiz is over or user finishes quiz early 
-2. extra points are allotted to user's score if they complete the quiz early 
-3. able to clear highschore board 
-4. able to go back to start page 
-5. correct/ incorrect appears once user selects their answer 
+1. extra points are allotted to user's score if they complete the quiz early 
+2. able to clear highschore board 
+3. able to go back to start page 
+4. correct/ incorrect appears once user selects their answer 
+5. questions are randomized 
+6. Scores are ordered from highest to lowest 
+7. Time is decremented by 5 if the user answers the question incorrectly. 
 
 # Screenshot
 <b>START PAGE</b> <br> 
