@@ -33,13 +33,13 @@ Once over, the user is prompted to type their initials into the text field. Fina
 <b>START PAGE</b> <br> 
 ![alt start Page](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_1.PNG) 
 <b>QUESTION 1 </b> <br> 
-![alt question1](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_2.PNG)
+![alt question1](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_2_done.PNG)
 <b>QUESTION 2 </b> <br> 
-![alt question2](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_3.PNG)
+![alt question2](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_3_done.PNG)
 <b>SAVE SCORE </b> <br> 
 ![alt save score](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_4.PNG)
 <b>SCORE BOARD </b> <br> 
-![alt score board](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_5.PNG) 
+![alt score board](https://github.com/csbonang/bonang_CodeQuiz/blob/main/quiz_5_done.PNG) 
 
 
 
